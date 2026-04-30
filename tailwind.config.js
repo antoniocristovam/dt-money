@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-const { colors } = require("./src/shared/colors");
+const { colors } = require("./src/shared/colors.ts");
+
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  presets: [require("@nativewind/preset")],
+  content: ["./App.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
