@@ -20,40 +20,42 @@ export const LoginForm = () => {
   const navigation = useNavigation<NavigationProp<PublicStackParamsList>>();
 
   return (
-    <>
-      <AppInput
-        name="email"
-        label="Email"
-        control={control}
-        placeholder="email.example.com"
-        leftIconName="mail-outline"
-      />
+    <View className="flex-1 justify-between pb-6 ">
+      <View className="flex-1 justify-center mb-10">
+        <AppInput
+          name="email"
+          label="Email"
+          control={control}
+          placeholder="email.example.com"
+          leftIconName="mail-outline"
+        />
 
-      <AppInput
-        name="password"
-        label="Senha"
-        secureTextEntry
-        control={control}
-        placeholder="••••••••"
-        leftIconName="lock-outline"
-      />
+        <AppInput
+          name="password"
+          label="Senha"
+          secureTextEntry
+          control={control}
+          placeholder="••••••••"
+          leftIconName="lock-outline"
+        />
 
-      <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
-        <AppButton iconName="arrow-forward">Login</AppButton>
-
-        <View>
-          <Text className="mb-6 text-gray-300 text-base">
-            Ainda não tem uma conta?
-          </Text>
-          <AppButton
-            onPress={() => navigation.navigate("Register")}
-            iconName="arrow-forward"
-            mode="outline"
-          >
-            Cadastrar
-          </AppButton>
+        <View className="mt-8">
+          <AppButton iconName="arrow-forward">Login</AppButton>
         </View>
       </View>
-    </>
+
+      <View className="pt-8">
+        <Text className="mb-6 text-gray-300 text-base">
+          Ainda não tem uma conta?
+        </Text>
+        <AppButton
+          onPress={() => navigation.navigate("Register")}
+          iconName="arrow-forward"
+          mode="outline"
+        >
+          Cadastrar
+        </AppButton>
+      </View>
+    </View>
   );
 };

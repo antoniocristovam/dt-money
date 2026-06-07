@@ -23,54 +23,56 @@ export const RegisterForm = () => {
   const navigation = useNavigation<NavigationProp<PublicStackParamsList>>();
 
   return (
-    <>
-      <AppInput
-        name="name"
-        label="Nome"
-        control={control}
-        leftIconName="person"
-        placeholder="Seu nome completo"
-      />
-      <AppInput
-        name="email"
-        label="Email"
-        control={control}
-        leftIconName="mail-outline"
-        placeholder="email.example.com"
-      />
-      <AppInput
-        label="Senha"
-        name="password"
-        secureTextEntry
-        control={control}
-        leftIconName="lock"
-        placeholder="••••••••"
-      />
-      <AppInput
-        secureTextEntry
-        control={control}
-        leftIconName="lock"
-        name="confirmPassword"
-        placeholder="••••••••"
-        label="Confirmar senha"
-      />
+    <View className="flex-1 justify-between pb-6">
+      <View className="flex-1 justify-center">
+        <AppInput
+          name="name"
+          label="Nome"
+          control={control}
+          leftIconName="person"
+          placeholder="Seu nome completo"
+        />
+        <AppInput
+          name="email"
+          label="Email"
+          control={control}
+          leftIconName="mail-outline"
+          placeholder="email.example.com"
+        />
+        <AppInput
+          label="Senha"
+          name="password"
+          secureTextEntry
+          control={control}
+          leftIconName="lock"
+          placeholder="••••••••"
+        />
+        <AppInput
+          secureTextEntry
+          control={control}
+          leftIconName="lock"
+          name="confirmPassword"
+          placeholder="••••••••"
+          label="Confirmar senha"
+        />
 
-      <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
-        <AppButton iconName="arrow-forward">Cadastrar</AppButton>
-
-        <View>
-          <Text className="mb-6 text-gray-300 text-base">
-            Já possui uma conta?
-          </Text>
-          <AppButton
-            onPress={() => navigation.navigate("Login")}
-            iconName="arrow-forward"
-            mode="outline"
-          >
-            Acessar
-          </AppButton>
+        <View className="mt-8">
+          <AppButton iconName="arrow-forward">Cadastrar</AppButton>
         </View>
       </View>
-    </>
+
+      <View className="pt-8">
+        <Text className="mb-6 text-gray-300 text-base">
+          Já possui uma conta?
+        </Text>
+        <AppButton
+          onPress={() => navigation.navigate("Login")}
+          iconName="arrow-forward"
+          mode="outline"
+        >
+          Acessar
+        </AppButton>
+      </View>
+    </View>
   );
 };
