@@ -4,6 +4,8 @@ import { PublicStackParamsList } from "@/routes/publicRoutes/types-public-routes
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 import { Text, View } from "react-native";
+import { loginSchema } from "./schema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export interface FormLoginParams {
   email: string;
@@ -15,9 +17,19 @@ export const LoginForm = () => {
     control,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<FormLoginParams>();
+  } = useForm<FormLoginParams>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: yupResolver(loginSchema),
+  });
 
   const navigation = useNavigation<NavigationProp<PublicStackParamsList>>();
+
+  const onSubmit = async (data: FormLoginParams) => {
+    console.log(data);
+  };
 
   return (
     <View className="flex-1 justify-between pb-6 ">
@@ -40,7 +52,9 @@ export const LoginForm = () => {
         />
 
         <View className="mt-8">
-          <AppButton iconName="arrow-forward">Login</AppButton>
+          <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">
+            Login
+          </AppButton>
         </View>
       </View>
 
