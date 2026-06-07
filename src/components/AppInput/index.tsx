@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import {
   Text,
@@ -13,9 +13,9 @@ import clsx from "clsx";
 
 interface AppInputParams<T extends FieldValues> extends TextInputProps {
   name: Path<T>;
+  label?: string;
   control: Control<T>;
   leftIconName?: keyof typeof MaterialIcons.glyphMap;
-  label?: string;
 }
 
 export const AppInput = <T extends FieldValues>({
@@ -23,9 +23,14 @@ export const AppInput = <T extends FieldValues>({
   name,
   label,
   leftIconName,
+  secureTextEntry,
   ...rest
 }: AppInputParams<T>) => {
-  const [isFocused, setIsFocused] = React.useState(false);
+  // states
+  const [isFocused, setIsFocused] = useState(false);
+  const [showText, setShowText] = useState(secureTextEntry);
+
+  // hooks
   const inputRef = useRef<TextInput>(null);
 
   const checkFocus = () => {
@@ -70,8 +75,19 @@ export const AppInput = <T extends FieldValues>({
                 onEndEditing={checkFocus}
                 className="flex-1 text-base text-gray-500"
                 placeholderTextColor={colors.gray["700"]}
+                secureTextEntry={showText}
                 {...rest}
               />
+
+              {secureTextEntry && (
+                <TouchableOpacity onPress={() => setShowText((prev) => !prev)}>
+                  <MaterialIcons
+                    size={24}
+                    color={colors.gray["600"]}
+                    name={showText ? "visibility" : "visibility-off"}
+                  />
+                </TouchableOpacity>
+              )}
             </TouchableOpacity>
           </View>
         );
