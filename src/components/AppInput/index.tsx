@@ -10,6 +10,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "@/shared/colors";
 import clsx from "clsx";
+import { ErrorMessage } from "../ErrorMessage";
 
 interface AppInputParams<T extends FieldValues> extends TextInputProps {
   name: Path<T>;
@@ -89,6 +90,7 @@ export const AppInput = <T extends FieldValues>({
                 </TouchableOpacity>
               )}
             </TouchableOpacity>
+            {error && <ErrorMessage children={error.message} />}
           </View>
         );
       }}
