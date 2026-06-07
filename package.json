@@ -12,6 +12,7 @@
     "@react-native-masked-view/masked-view": "0.3.2",
     "@react-navigation/native": "^7.2.4",
     "@react-navigation/stack": "^7.9.2",
+    "clsx": "^2.1.1",
     "expo": "~54.0.33",
     "expo-status-bar": "~3.0.9",
     "nativewind": "2.0.11",
