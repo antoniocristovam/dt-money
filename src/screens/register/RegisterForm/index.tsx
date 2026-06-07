@@ -2,55 +2,72 @@ import { AppButton } from "@/components/AppButton";
 import { AppInput } from "@/components/AppInput";
 import { PublicStackParamsList } from "@/routes/publicRoutes/types-public-routes";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Text, View } from "react-native";
 
-export interface FormLoginParams {
+interface RegisterFormParams {
   email: string;
+  name: string;
   password: string;
+  confirmPassword: string;
 }
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const {
     control,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<FormLoginParams>();
+  } = useForm<RegisterFormParams>();
 
   const navigation = useNavigation<NavigationProp<PublicStackParamsList>>();
 
   return (
     <>
       <AppInput
+        name="name"
+        label="Nome"
+        control={control}
+        leftIconName="person"
+        placeholder="Seu nome completo"
+      />
+      <AppInput
         name="email"
         label="Email"
         control={control}
-        placeholder="email.example.com"
         leftIconName="mail-outline"
+        placeholder="email.example.com"
       />
-
       <AppInput
-        name="password"
         label="Senha"
+        name="password"
         secureTextEntry
         control={control}
+        leftIconName="lock"
         placeholder="••••••••"
-        leftIconName="lock-outline"
+      />
+      <AppInput
+        secureTextEntry
+        control={control}
+        leftIconName="lock"
+        name="confirmPassword"
+        placeholder="••••••••"
+        label="Confirmar senha"
       />
 
       <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
-        <AppButton iconName="arrow-forward">Login</AppButton>
+        <AppButton iconName="arrow-forward">Cadastrar</AppButton>
 
         <View>
           <Text className="mb-6 text-gray-300 text-base">
-            Ainda não tem uma conta?
+            Já possui uma conta?
           </Text>
           <AppButton
-            onPress={() => navigation.navigate("Register")}
+            onPress={() => navigation.navigate("Login")}
             iconName="arrow-forward"
             mode="outline"
           >
-            Cadastrar
+            Acessar
           </AppButton>
         </View>
       </View>
